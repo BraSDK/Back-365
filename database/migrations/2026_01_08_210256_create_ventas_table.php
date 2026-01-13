@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('mes_id')->constrained()->restrictOnDelete();
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->foreignId('campana_id')->constrained()->restrictOnDelete();
-            $table->foreignId('region_id')->constrained()->restrictOnDelete();
             $table->foreignId('departamento_id')->constrained()->restrictOnDelete();
             $table->foreignId('provincia_id')->constrained()->restrictOnDelete();
             $table->foreignId('distrito_id')->constrained()->restrictOnDelete();
