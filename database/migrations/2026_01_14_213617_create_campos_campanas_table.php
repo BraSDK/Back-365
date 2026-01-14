@@ -11,16 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupos_campos', function (Blueprint $table) {
+        Schema::create('campos_campanas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campana_id')->constrained()->cascadeOnDelete();
-            $table->string('nombre_grupo', 100);
+            $table->foreignId('grupo_id')->constrained('grupos_campos')->cascadeOnDelete();
+
+            $table->string('nombre', 255);
+            $table->string('tipo', 50); // text, number, date, lista_multiple, comparar
+
+            $table->boolean('visible')->default(true);
+            $table->boolean('obligatorio')->default(false);
+
             $table->integer('orden')->default(1);
-            $table->boolean('activo')->default(true);
             $table->timestamps();
 
             // Recomendado
-            $table->unique(['campana_id', 'nombre_grupo']);
+            $table->index(['campana_id', 'grupo_id']);
             $table->index(['campana_id', 'orden']);
         });
     }
@@ -30,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grupos_campos');
+        Schema::dropIfExists('campos_campanas');
     }
 };
