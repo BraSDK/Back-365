@@ -17,10 +17,10 @@ return new class extends Migration
             // Relaciones principales
             $table->foreignId('venta_id')->constrained()->cascadeOnDelete();
 
-            $table->foreignId('campo_id')->constrained('campos_campana')->cascadeOnDelete();
+            $table->foreignId('campo_id')->constrained('campos_campanas')->cascadeOnDelete();
 
             // Para campos tipo lista_multiple
-            $table->foreignId('opcion_id')->nullable()->constrained('opciones_campo')->nullOnDelete();
+            $table->foreignId('opcion_id')->nullable()->constrained('opciones_campos')->nullOnDelete();
 
             // Valores según tipo de campo
             $table->string('valor_texto')->nullable();
